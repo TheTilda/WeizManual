@@ -4,7 +4,11 @@ const GOLD = '#B7A171';
 const DARK = '#231F20';
 
 const files = [
-  { name: 'Omni Barista C1P', path: 'C1P.pdf', size: '8,6 МБ' },
+  {
+    name: 'Omni Barista C1P', path: 'C1P.pdf', size: '8,6 МБ',
+    kit: 'C1P-kit.jpg',
+    kitAlt: 'Комплектация WEIZ Omni Barista: кофемашина, адаптеры для капсул Nespresso и Dolce Gusto, для молотого кофе, чая и чалд, мерная ложка-темпер, шприц для прокачки воды, руководство по эксплуатации',
+  },
 ];
 
 function App() {
@@ -33,13 +37,24 @@ function App() {
                 style={{
                   display: 'flex', alignItems: 'center', background: '#f6f3ee', border: `1.5px solid ${GOLD}`, borderRadius: 12, marginBottom: 14, padding: '16px 18px', textDecoration: 'none', color: DARK, fontSize: '1.1em', fontWeight: 500, transition: 'background 0.18s, color 0.18s'
                 }}
-                onMouseOver={e => (e.currentTarget.style.background = GOLD, e.currentTarget.style.color = '#fff')}
-                onMouseOut={e => (e.currentTarget.style.background = '#f6f3ee', e.currentTarget.style.color = DARK)}
+                onMouseOver={e => { e.currentTarget.style.background = GOLD; e.currentTarget.style.color = '#fff'; }}
+                onMouseOut={e => { e.currentTarget.style.background = '#f6f3ee'; e.currentTarget.style.color = DARK; }}
               >
                 <span style={{ display: 'inline-block', marginRight: 14, fontSize: '1.4em', flexShrink: 0 }}>📄</span>
                 <span style={{ flex: 1 }}>{file.name}</span>
                 <span style={{ fontSize: '0.78em', opacity: 0.6, flexShrink: 0 }}>PDF · {file.size}</span>
               </a>
+              {file.kit && (
+                <details className="kit" style={{ margin: '-4px 0 14px 0', padding: '0 4px' }}>
+                  <summary style={{ cursor: 'pointer', color: DARK, fontSize: '0.95em', fontWeight: 500, padding: '6px 0', listStyle: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span className="kit-arrow" style={{ color: GOLD, display: 'inline-block', transition: 'transform 0.18s' }}>›</span>
+                    Комплектация
+                  </summary>
+                  <a href={file.kit} target="_blank" rel="noopener noreferrer" style={{ display: 'block', margin: '8px 0 4px 0' }}>
+                    <img src={file.kit} alt={file.kitAlt} loading="lazy" width={960} height={1280} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 12 }} />
+                  </a>
+                </details>
+              )}
             </li>
           ))}
         </ul>
@@ -57,6 +72,8 @@ function App() {
       <p style={{ color: '#a8a19b', fontSize: '0.8em', margin: '18px 0 24px 0' }}>Кофейня дома. Каждый день.</p>
       <style>{`
         body { margin: 0; }
+        .kit summary::-webkit-details-marker { display: none; }
+        .kit[open] .kit-arrow { transform: rotate(90deg); }
         @media (max-width: 600px) {
           .container {
             margin: 0 !important;
