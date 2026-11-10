@@ -6,7 +6,7 @@ const DARK = '#231F20';
 const files = [
   {
     name: 'Omni Barista C1P', path: 'C1P.pdf', size: '8,6 МБ',
-    kit: 'C1P-kit.jpg',
+    kit: 'C1P-kit-v2.jpg',
     kitAlt: 'Комплектация WEIZ Omni Barista: кофемашина, адаптеры для капсул Nespresso и Dolce Gusto, для молотого кофе, чая и чалд, мерная ложка-темпер, шприц для прокачки воды, руководство по эксплуатации',
   },
 ];
